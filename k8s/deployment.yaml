@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: xethscribe-deployment
+spec:
+  replicas: 2 # Number of pod instances
+  selector:
+    matchLabels:
+      app: xethscribe
+  template:
+    metadata:
+      labels:
+        app: xethscribe
+    spec:
+      containers:
+        - name: xethscribe
+          image: shantanu993/xethscribe-app:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: "512Mi"
+            requests:
+              cpu: "0.2"
+              memory: "256Mi"
